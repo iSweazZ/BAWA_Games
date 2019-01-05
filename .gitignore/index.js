@@ -28,7 +28,7 @@ Bot.on('message', message => {
 if(message.channel.name == 'commandes')
 {
     if (message.content == commande + 'test'){
-        message.reply('test bot')
+        message.reply('test bot 123')
     }
     
     if (message.content.startsWith(commande + "game")){//change le jeu du bot
