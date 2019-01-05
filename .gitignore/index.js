@@ -20,7 +20,7 @@ Bot.on('ready', () => {
     
 Bot.user.setPresence({ game: { name: 'BAWA Games', type: 0 } });
 console.log("Bot en ligne");
-    Ecrire_channel('console','Je suis en ligne',1);
+Bot.channels.find("name", 'console').send('je suis en ligne')
 
 });
 
