@@ -125,8 +125,8 @@ if(message.channel.name == 'commandes')
         if(message.member.voiceChannel)
         {
             message.member.voiceChannel.join().then(connection => {
-                //dispatcher = connection.playArbitraryInput('http://testbotbg.000webhostapp.com/music/radio/' + radio_plage + '.mp3')
-                dispatcher = connection.playFile('./Musics/' + radio_plage + '.mp3')
+                dispatcher = connection.playArbitraryInput('http://testbotbg.000webhostapp.com/music/radio/' + radio_plage + '.mp3')
+                //dispatcher = connection.playFile('./Musics/' + radio_plage + '.mp3')
                 dispatcher.on('end', e => {
                         if(radio_plage < radio_plage_max)
                         {
