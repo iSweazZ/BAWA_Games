@@ -17,7 +17,7 @@ var nombre_vote
 Bot.login(process.env.TOKEN)
 
 Bot.on('ready', () => {
-
+    
 Bot.user.setPresence({ game: { name: 'BAWA Games', type: 0 } });
 console.log("Bot en ligne");
 
@@ -27,6 +27,10 @@ Bot.on('message', message => {
     var commande = "!";
 if(message.channel.name == 'commandes')
 {
+    if (message.content == commande + 'test'){
+        message.reply('test bot')
+    }
+    
     if (message.content.startsWith(commande + "game")){//change le jeu du bot
         if(is_admin() == false)
         {
