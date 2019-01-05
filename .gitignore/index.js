@@ -14,7 +14,7 @@ var liste_votants = new Array()
 var sondage_date
 var liste_vote = new Array()
 var nombre_vote
-Bot.login('BOT_ID')
+Bot.login('process.env.TOKEN')
 
 Bot.on('ready', () => {
 
