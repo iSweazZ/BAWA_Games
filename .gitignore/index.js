@@ -18,7 +18,7 @@ var sondage_actif = false
 var votes_multiples
 //fin des variables
 
-Bot.login('process.env.token')
+Bot.login('PROCESS.ENV.TOKKEN')
 
 Bot.on('ready', () => {
 
