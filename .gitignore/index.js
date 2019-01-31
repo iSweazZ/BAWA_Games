@@ -16,7 +16,7 @@ var liste_vote = new Array()
 var nombre_vote
 var sondage_actif = false
 var votes_multiples
-var version = '1.00'
+var version = '1.01'
 //fin des variables
 
 Bot.login(process.env.TOKEN)
@@ -54,6 +54,12 @@ if(message.channel.name == 'commandes')
           {
               return
           }
+
+          if(message.deletable)
+          {
+              message.delete()
+          }
+
           message.reply('La version de BAWA Assistance est: ' + version)
       }
 
@@ -65,7 +71,7 @@ if(message.channel.name == 'commandes')
       }
 
       if (message.content.startsWith(commande + "avertissement")){
-          if(is_Director(true) == false || is_production() == false)
+          if(is_Director(true) == false && is_production() == false)
           {
               return
           }
@@ -293,7 +299,7 @@ if(message.channel.name == 'commandes')
 
     if(message.content.startsWith(commande + 'role.membres'))
     {
-        if(is_Director(true) || is_production() == false)
+        if(is_Director(true) == false && is_production() == false)
         {
             return
         }
