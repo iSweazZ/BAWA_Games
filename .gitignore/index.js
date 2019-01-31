@@ -16,7 +16,7 @@ var liste_vote = new Array()
 var nombre_vote
 var sondage_actif = false
 var votes_multiples
-var version = '1.01'
+var version = '1.02'
 //fin des variables
 
 Bot.login(process.env.TOKEN)
@@ -25,7 +25,7 @@ Bot.on('ready', () => {
 
 Bot.user.setPresence({ game: { name: 'BAWA Games', type: 0 } });
 console.log("Bot en ligne");
-Bot.channels.find("name", 'console').send('je suis en ligne')
+Bot.channels.find("name", 'console').send('je suis en ligne, ma version: ' + version)
 });
 
 Bot.on('message', message => {
@@ -774,6 +774,18 @@ function Find_Role()
 
 function Find_Member(role_membre)
 {
+
+    message.mentions.roles.forEach(roles_find =>{
+        var msg_role
+        msg_role = 'Membres ayant le role: ' + roles_find.name
+
+        roles_find.members.forEach(membres => {
+            msg_role = msg_role + "\n" + membres.user.username + ' (' + membres.nickname + ')'
+    })
+
+    message.author.sendMessage(msg_role)
+})
+
     try{
     var tab_membres = ['']
     message.guild.roles.find('name', role_membre).members.forEach(membres => {
