@@ -16,7 +16,7 @@ var liste_vote = new Array()
 var nombre_vote
 var sondage_actif = false
 var votes_multiples
-var version = '1.02'
+var version = '1.02.1'
 //fin des variables
 
 Bot.login(process.env.TOKEN)
@@ -785,7 +785,7 @@ function Find_Member(role_membre)
 
     message.author.sendMessage(msg_role)
 })
-
+/*
     try{
     var tab_membres = ['']
     message.guild.roles.find('name', role_membre).members.forEach(membres => {
@@ -816,6 +816,7 @@ catch
 {
     message.author.sendMessage("Vous avez entré une commande érronée, vérifiez que vous n'avez pas entré : au lieu de ; ou que le rôle que vous avez entré existe bien.")
 }
+*/
 }
 
 function avertissement(raison, niveau)
