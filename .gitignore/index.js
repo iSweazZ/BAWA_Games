@@ -16,9 +16,10 @@ var liste_vote = new Array()
 var nombre_vote
 var sondage_actif = false
 var votes_multiples
+var version = '1.00'
 //fin des variables
 
-Bot.login(PROCESS.ENV.TOKEN)
+Bot.login(process.env.TOKEN)
 
 Bot.on('ready', () => {
 
@@ -47,6 +48,15 @@ if(message.channel.name == 'commandes')
         add_console()
       }
 
+      if (message.content == commande + 'version')
+      {
+          if(is_production() == false)
+          {
+              return
+          }
+          message.reply('La version de BAWA Assistance est: ' + version)
+      }
+
       if (message.content.startsWith(commande + "stop"))//déconnecte le bot
       {
           supprimer_message()
@@ -55,7 +65,7 @@ if(message.channel.name == 'commandes')
       }
 
       if (message.content.startsWith(commande + "avertissement")){
-          if(is_Director(True) == false || is_production() == false)
+          if(is_Director(true) == false || is_production() == false)
           {
               return
           }
@@ -108,7 +118,7 @@ if(message.channel.name == 'commandes')
 
       if (message.content.startsWith(commande + 'exclure.roles'))
       {
-        if(is_production(True) == false)
+        if(is_production(true) == false)
         {
             return
         }
@@ -119,7 +129,7 @@ if(message.channel.name == 'commandes')
 
       if (message.content.startsWith(commande + 'exclure.membre'))
       {
-          if(is_production(True) == false)
+          if(is_production(true) == false)
           {
               return
           }
@@ -144,7 +154,7 @@ if(message.channel.name == 'commandes')
 
     if (message.content.startsWith(commande + 'ban'))
     {
-        if(is_production(True) == false)
+        if(is_production(true) == false)
         {
             return
         }
@@ -165,7 +175,7 @@ if(message.channel.name == 'commandes')
     {
         message.author.sendMessage("La commande !radio à été retirée du bot")
         return
-        if (is_production(True) == false)
+        if (is_production(true) == false)
         {
             return
         }
@@ -269,7 +279,7 @@ if(message.channel.name == 'commandes')
 
     if (message.content.startsWith(commande + 'message.all'))
     {
-        if(is_production(True) == false)
+        if(is_production(true) == false)
         {
         return
         }
@@ -308,7 +318,7 @@ if(message.channel.name == 'commandes')
 
     if(message.content.startsWith(commande + 'sondage.texte'))
     {
-        if(is_production(True) == false)
+        if(is_production(true) == false)
         {
             return
         }
@@ -322,7 +332,7 @@ if(message.channel.name == 'commandes')
 
     if(message.content.startsWith(commande + 'sondage.votes.multiples'))
     {
-        if(is_production(True) == false)
+        if(is_production(true) == false)
         {
             return
         }
@@ -343,7 +353,7 @@ if(message.channel.name == 'commandes')
 
     if(message.content.startsWith(commande + 'sondage.réponses'))
     {
-        if (is_production(True) == false)
+        if (is_production(true) == false)
         {
             return
         }
@@ -360,7 +370,7 @@ if(message.channel.name == 'commandes')
 
     if(message.content.startsWith(commande + 'sondage.date'))
     {
-        if (is_production(True) == false)
+        if (is_production(true) == false)
         {
             return
         }
@@ -393,7 +403,7 @@ if(message.channel.name == 'commandes')
 
     if(message.content.startsWith(commande + 'sondage.poste'))
     {
-        if(is_production(True) == false)
+        if(is_production(true) == false)
         {
             return
         }
@@ -654,7 +664,7 @@ function msg_tlm(msg)
 
 function modifier_surnom(surnom)
 {
-    if(is_production(True) == false)
+    if(is_production(true) == false)
     {
         return
     }
@@ -681,7 +691,7 @@ function modifier_surnom(surnom)
 
 function supprimer_surnom(surnom)
 {
-    if(is_production(True) == false)
+    if(is_production(true) == false)
     {
         return
     }
@@ -702,6 +712,15 @@ function supprimer_surnom(surnom)
 
     supprimer_message()
     add_console()
+}
+
+function arret_bot()
+{
+  if (is_production(true))
+    {
+      supprimer_message()
+      Bot.destroy()//déconnecte le bot
+    }
 }
 
 function Exclure_Role()
@@ -785,15 +804,6 @@ function avertissement(raison, niveau)
 {
     message.mentions.members.first().sendMessage(message.member.nickname + " vous a donné un avertiessement, voici la raison: " + raison + ' ' + msg_niveau_avertissement[niveau])
     Ecrire_channel('avertissements', message.mentions.members.first().nickname + ' (' + message.mentions.users.first().username + ') a reçu un avertissement pour la raison suivante ' + raison + ' ' + msg_niveau_avertissement[niveau], 1)
-}
-
-function arret_bot()
-{
-  if (is_production(True))
-    {
-      supprimer_message()
-      Bot.destroy()//déconnecte le bot
-    }
 }
 
 function msg_mention(texte)
